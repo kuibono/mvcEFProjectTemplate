@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.Http.OData;
 
 namespace Test.WebClient.Controllers
 {
@@ -15,6 +16,7 @@ namespace Test.WebClient.Controllers
         public IdentityServiceBase<T> svc = new IdentityServiceBase<T>();
 
         [AcceptVerbs("POST","GET","PUT")]
+        [EnableQuery]
         public IQueryable<T> Get()
         {
             return svc.Set;
