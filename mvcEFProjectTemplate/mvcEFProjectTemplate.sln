@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.1 Presentation", "1.1 Presentation", "{2482A0FA-BC72-4F8E-AB49-E908FA8DBC19}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.2 Application", "1.2 Application", "{A70BA0B2-2D7C-4B12-A0A1-40C96C4806C8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.3 Domain", "1.3 Domain", "{F2275148-0605-4510-9A31-2C37039BA9E9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.4 Infrastructure", "1.4 Infrastructure", "{A386DC7A-B280-4F0D-BE18-6C636F3E611D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.5 Test", "1.5 Test", "{626BA776-9AC8-4C3F-BD41-11932AF68D3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF.Core", "1 Layers\1.4 Infrastructure\EF.Core\EF.Core.csproj", "{BA815616-633E-45EB-B2AD-8AC526766015}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.WebClient", "1 Layers\1.1 Presentation\Test.WebClient\Test.WebClient.csproj", "{61C00CA5-21BB-4E25-8856-DD14D63B639E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA815616-633E-45EB-B2AD-8AC526766015}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA815616-633E-45EB-B2AD-8AC526766015}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA815616-633E-45EB-B2AD-8AC526766015}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA815616-633E-45EB-B2AD-8AC526766015}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61C00CA5-21BB-4E25-8856-DD14D63B639E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61C00CA5-21BB-4E25-8856-DD14D63B639E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61C00CA5-21BB-4E25-8856-DD14D63B639E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61C00CA5-21BB-4E25-8856-DD14D63B639E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BA815616-633E-45EB-B2AD-8AC526766015} = {A386DC7A-B280-4F0D-BE18-6C636F3E611D}
+		{61C00CA5-21BB-4E25-8856-DD14D63B639E} = {2482A0FA-BC72-4F8E-AB49-E908FA8DBC19}
+	EndGlobalSection
+EndGlobal
