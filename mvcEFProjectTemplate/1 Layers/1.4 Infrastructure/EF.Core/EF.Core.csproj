@@ -57,6 +57,7 @@
     <Compile Include="Domain\PagedResult.cs" />
     <Compile Include="Domain\QueryObject.cs" />
     <Compile Include="Domain\StringKeyEntity.cs" />
+    <Compile Include="Extensions\PagedQueryInterface.cs" />
     <Compile Include="Extensions\QueryTypeAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\IdentityServiceBase.cs" />

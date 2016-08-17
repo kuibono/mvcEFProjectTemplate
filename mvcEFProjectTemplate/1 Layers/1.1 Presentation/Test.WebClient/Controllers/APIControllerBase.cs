@@ -1,4 +1,5 @@
 ﻿using EF.Core.Domain;
+using EF.Core.Extensions;
 using EF.Core.Service;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace Test.WebClient.Controllers
         }
 
         [AcceptVerbs("POST", "GET", "PUT")]
+        [PagedQueryInterface]
         public PagedResult<T> Query(QueryObject q)
         {
 
