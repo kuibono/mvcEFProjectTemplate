@@ -23,6 +23,13 @@ namespace Test.WebClient.Controllers
         }
 
         [AcceptVerbs("POST", "GET", "PUT")]
+        public PagedResult<T> Query(QueryObject q)
+        {
+
+            return svc.Query(q);
+        }
+
+        [AcceptVerbs("POST", "GET", "PUT")]
        // [ResponseType(typeof(T))]
         public IHttpActionResult GetApplicationUser(long id)
         {

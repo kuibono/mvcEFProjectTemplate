@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Linq.Dynamic;
 
 namespace EF.Core.Service
 {
@@ -60,6 +61,28 @@ namespace EF.Core.Service
             CurrentContext.Entry(itemInDb).State = EntityState.Modified;
 
             CurrentContext.SaveChanges();
+        }
+
+        public PagedResult<T> Query(QueryObject param)
+        {
+            IQueryable<T> query = Set;
+            for(int i=0;i<param.Count;i++)
+            {
+                var key = param.Keys.ToArray()[i];
+                var val = param[key];
+
+                //从对象T中找到 名字与key相同的对象，并且根据Attribute找到对比类型，进行筛选
+                
+               
+            }
+
+            query = query.OrderBy(param.sortField,param.sortOrder);
+
+            return new PagedResult<T>
+            {
+                data = query.Skip(param.pageIndex * param.pageSize).Take(param.pageSize).ToList(),
+                total = query.Count()
+            };
         }
 
     }
