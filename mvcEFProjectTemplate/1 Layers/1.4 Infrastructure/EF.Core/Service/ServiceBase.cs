@@ -131,6 +131,16 @@ namespace EF.Core.Service
             }
             query = Set.Where(sb.ToString(), queryParam.ToArray()).AsQueryable();
 
+
+            //排序规则
+            if(string.IsNullOrEmpty(param.sortField))
+            {
+                param.sortField = "Id";
+            }
+            if (string.IsNullOrEmpty(param.sortOrder))
+            {
+                param.sortOrder = "Desc";
+            }
             query = query.OrderBy(param.sortField, param.sortOrder);
 
 
