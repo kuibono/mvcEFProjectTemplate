@@ -39,5 +39,10 @@ namespace EF.Core.Service
 
             CurrentContext.SaveChanges();
         }
+
+        public string GenerateKey()
+        {
+            return "";
+        }
     }
 }

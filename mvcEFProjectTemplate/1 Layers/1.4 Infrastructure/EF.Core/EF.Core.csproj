@@ -69,8 +69,10 @@
     <Compile Include="Domain\Authorize\MenuItem.cs" />
     <Compile Include="Domain\Authorize\Role.cs" />
     <Compile Include="Domain\Authorize\User.cs" />
+    <Compile Include="Domain\DetailEntity.cs" />
     <Compile Include="Domain\EntityBase.cs" />
     <Compile Include="Domain\IdentityEntity.cs" />
+    <Compile Include="Domain\MasterWithExamineEntity.cs" />
     <Compile Include="Domain\NamedEntity.cs" />
     <Compile Include="Domain\PagedResult.cs" />
     <Compile Include="Domain\QueryObject.cs" />
@@ -81,6 +83,7 @@
     <Compile Include="Extensions\SummaryTypeAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\IdentityServiceBase.cs" />
+    <Compile Include="Service\MasterDetailService.cs" />
     <Compile Include="Service\ServiceBase.cs" />
     <Compile Include="Service\StringKeyServiceBase.cs" />
   </ItemGroup>
