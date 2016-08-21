@@ -65,6 +65,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\ContextBase.cs" />
+    <Compile Include="Domain\Authorize\Group.cs" />
+    <Compile Include="Domain\Authorize\MenuItem.cs" />
+    <Compile Include="Domain\Authorize\Role.cs" />
+    <Compile Include="Domain\Authorize\User.cs" />
     <Compile Include="Domain\EntityBase.cs" />
     <Compile Include="Domain\IdentityEntity.cs" />
     <Compile Include="Domain\NamedEntity.cs" />
