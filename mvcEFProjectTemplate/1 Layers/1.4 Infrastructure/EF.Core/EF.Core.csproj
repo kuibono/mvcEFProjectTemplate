@@ -78,6 +78,7 @@
     <Compile Include="Domain\QueryObject.cs" />
     <Compile Include="Domain\StringKeyEntity.cs" />
     <Compile Include="Extensions\DynamicLinqExtension.cs" />
+    <Compile Include="Extensions\KeyFormatAttribute.cs" />
     <Compile Include="Extensions\PagedQueryInterface.cs" />
     <Compile Include="Extensions\QueryTypeAttribute.cs" />
     <Compile Include="Extensions\SummaryTypeAttribute.cs" />

@@ -9,6 +9,8 @@ namespace Test.WebClient.Models
 {
     public class TestContext:ContextBase
     {
-        public DbSet<TestUser> TestUser { get; set; }    
+        public DbSet<TestUser> TestUser { get; set; }
+
+        public DbSet<TestStringKey> TestStringKey { get; set; }    
     }
 }

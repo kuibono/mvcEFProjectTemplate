@@ -1,4 +1,5 @@
-﻿using EF.Core.Domain;
+﻿using EF.Core.Context;
+using EF.Core.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,20 @@ namespace EF.Core.Service
         private StringKeyServiceBase<TM>  TMService = new StringKeyServiceBase<TM>();
         private StringKeyServiceBase<TD> TDService = new StringKeyServiceBase<TD>();
 
+        private ContextBase _CurrentContext = new ContextBase();
+        public ContextBase CurrentContext
+        {
+
+            get
+            {
+                return _CurrentContext;
+            }
+            set
+            {
+                _CurrentContext = value;
+            }
+        }
+
         public TM Get(string id)
         {
             return TMService.Get(id);
@@ -21,7 +36,7 @@ namespace EF.Core.Service
 
         public void Save(TM m,List<TD> ds)
         {
-
+            
         }
     }
 }

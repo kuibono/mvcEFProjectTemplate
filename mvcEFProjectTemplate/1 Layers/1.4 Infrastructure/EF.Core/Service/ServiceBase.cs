@@ -43,7 +43,7 @@ namespace EF.Core.Service
             return Set.Find(key);
         }
 
-        public void Create(T t)
+        public virtual void Create(T t)
         {
             Set.Add(t);
             CurrentContext.SaveChanges();

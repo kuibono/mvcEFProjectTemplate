@@ -1,8 +1,10 @@
-﻿using System;
+﻿using EF.Core.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Test.WebClient.Models;
 
 namespace Test.WebClient.Controllers
 {
@@ -25,6 +27,17 @@ namespace Test.WebClient.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult Test()
+        {
+            var svc = new StringKeyServiceBase<TestStringKey>();
+            svc.CurrentContext = new TestContext();
+            var item = new TestStringKey();
+            item.Name = "Test1";
+
+            svc.Create(item);
+            return Json(item.Id, JsonRequestBehavior.AllowGet);
         }
     }
 }
