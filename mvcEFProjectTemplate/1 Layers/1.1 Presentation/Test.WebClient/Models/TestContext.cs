@@ -11,6 +11,10 @@ namespace Test.WebClient.Models
     {
         public DbSet<TestUser> TestUser { get; set; }
 
-        public DbSet<TestStringKey> TestStringKey { get; set; }    
+        public DbSet<TestStringKey> TestStringKey { get; set; }
+
+        public DbSet<PcPurchaseDetail> PcPurchaseDetail { get; set; }
+
+        public DbSet<PcPurchaseManage> PcPurchaseManage { get; set; }    
     }
 }

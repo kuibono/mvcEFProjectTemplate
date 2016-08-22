@@ -62,7 +62,12 @@ namespace EF.Core.Service
             CurrentContext.SaveChanges();
         }
 
+
         public string GenerateKey()
+        {
+            return GenerateKey(0);
+        }
+        public string GenerateKey(int seed)
         {
 
             string format = "yyyyMMdd#######";
@@ -70,7 +75,7 @@ namespace EF.Core.Service
             var v = (KeyFormatAttribute[])typeof(T).GetCustomAttributes(typeof(KeyFormatAttribute), false);
             if (v == null || v.Count() == 0)
             {
-                return (GetMaxId("") + 1).ToString();
+                return (GetMaxId("") + 1 + seed).ToString();
             }
             else
             {
@@ -178,7 +183,7 @@ namespace EF.Core.Service
             result = result.Replace("#", "");
 
             var sharpCount = format.ToCharArray().Count(p => p == '#');
-            var number = FixChar(GetMaxId(result), '0', sharpCount);
+            var number = FixChar(GetMaxId(result) + seed, '0', sharpCount);
 
             result += number;
             return result;
@@ -196,7 +201,7 @@ namespace EF.Core.Service
             }
             else
             {
-                var maxnumber = TrimSart(objList.First().Id,pre);
+                var maxnumber = TrimSart(objList.First().Id, pre);
                 return Convert.ToInt64(maxnumber) + 1;
             }
         }
@@ -213,9 +218,9 @@ namespace EF.Core.Service
             return result;
         }
 
-        private string TrimSart(string str,string chars)
+        private string TrimSart(string str, string chars)
         {
-            if(str.StartsWith(chars))
+            if (str.StartsWith(chars))
             {
                 return str.Substring(chars.Length);
             }

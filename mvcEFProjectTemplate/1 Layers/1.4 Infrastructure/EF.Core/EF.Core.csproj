@@ -82,10 +82,12 @@
     <Compile Include="Extensions\PagedQueryInterface.cs" />
     <Compile Include="Extensions\QueryTypeAttribute.cs" />
     <Compile Include="Extensions\SummaryTypeAttribute.cs" />
+    <Compile Include="Extensions\UIPropertyAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\IdentityServiceBase.cs" />
     <Compile Include="Service\MasterDetailService.cs" />
     <Compile Include="Service\MasterWithExamineService.cs" />
+    <Compile Include="Service\MiniUIService.cs" />
     <Compile Include="Service\ServiceBase.cs" />
     <Compile Include="Service\StringKeyServiceBase.cs" />
   </ItemGroup>

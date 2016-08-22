@@ -21,10 +21,13 @@ namespace EF.Core.Service
 
             get
             {
+
                 return _CurrentContext;
             }
             set
             {
+                TMService.CurrentContext = value;
+                TDService.CurrentContext = value;
                 _CurrentContext = value;
             }
         }
@@ -48,19 +51,12 @@ namespace EF.Core.Service
                 set.Add(m);
             }
 
+            int index = 0;
             ds.ForEach(d =>
             {
                 switch (d._state)
                 {
-                    case "added":
-                        {
-                            if (string.IsNullOrEmpty(d.Id))
-                            {
-                                d.Id = TDService.GenerateKey();
-                                tDSet.Add(d);
-                            }
-                        }
-                        break;
+
                     case "modified":
                         {
                             var itemInDb = tDSet.Find(d.Id);
@@ -71,7 +67,19 @@ namespace EF.Core.Service
                     case "removed":
                         set.Remove(set.Find(d.Id));
                         break;
+                    case "added":
+                    default:
+                        {
+                            if (string.IsNullOrEmpty(d.Id))
+                            {
+                                d.Id = TDService.GenerateKey(index);
+                                d.MasterKey = m.Id;
+                                tDSet.Add(d);
+                            }
+                        }
+                        break;
                 }
+                index++;
             });
 
             CurrentContext.SaveChanges();

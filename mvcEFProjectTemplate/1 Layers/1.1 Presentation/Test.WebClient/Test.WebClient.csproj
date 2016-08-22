@@ -194,6 +194,8 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PcPurchaseDetail.cs" />
+    <Compile Include="Models\PcPurchaseManage.cs" />
     <Compile Include="Models\TestContext.cs" />
     <Compile Include="Models\TestStringKey.cs" />
     <Compile Include="Models\TestUser.cs" />
