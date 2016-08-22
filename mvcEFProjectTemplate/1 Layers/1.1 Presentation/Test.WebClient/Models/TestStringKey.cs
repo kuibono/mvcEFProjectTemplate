@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Test.WebClient.Models
 {
-    [KeyFormat( Format="21yyyyMMddHHmmssfff####")]
+    [KeyFormat( Format="21############")]
     public class TestStringKey:StringKeyEntity
     {
         public string Name { get; set; }

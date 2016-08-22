@@ -18,11 +18,14 @@ namespace EF.Core.Service
 
         public override void Create(T t)
         {
-            if (string.IsNullOrEmpty(t.Id))
+            lock (Set)
             {
-                t.Id = GenerateKey();
+                if (string.IsNullOrEmpty(t.Id))
+                {
+                    t.Id = GenerateKey();
+                }
+                base.Create(t);
             }
-            base.Create(t);
         }
 
         public void Save(T t)
@@ -61,127 +64,125 @@ namespace EF.Core.Service
 
         public string GenerateKey()
         {
-            lock(Set)
+
+            string format = "yyyyMMdd#######";
+
+            var v = (KeyFormatAttribute[])typeof(T).GetCustomAttributes(typeof(KeyFormatAttribute), false);
+            if (v == null || v.Count() == 0)
             {
-                string format = "yyyyMMdd#######";
+                return (GetMaxId("") + 1).ToString();
+            }
+            else
+            {
+                format = v[0].Format;
+            }
 
-                var v = (KeyFormatAttribute[])typeof(T).GetCustomAttributes(typeof(KeyFormatAttribute), false);
-                if (v == null || v.Count() == 0)
+            string result = format;
+
+            #region yyyy
+            if (format.Contains("yyyy"))
+            {
+                result = result.Replace("yyyy", DateTime.Now.Year.ToString());
+            }
+            #endregion
+
+            #region MM
+            if (format.Contains("MM"))
+            {
+                if (DateTime.Now.Month < 10)
                 {
-
+                    result = result.Replace("MM", "0" + DateTime.Now.Month.ToString());
                 }
                 else
                 {
-                    format = v[0].Format;
+                    result = result.Replace("MM", DateTime.Now.Month.ToString());
                 }
-
-                string result = format;
-
-                #region yyyy
-                if (format.Contains("yyyy"))
-                {
-                    result = result.Replace("yyyy", DateTime.Now.Year.ToString());
-                }
-                #endregion
-
-                #region MM
-                if (format.Contains("MM"))
-                {
-                    if (DateTime.Now.Month < 10)
-                    {
-                        result = result.Replace("MM", "0" + DateTime.Now.Month.ToString());
-                    }
-                    else
-                    {
-                        result = result.Replace("MM", DateTime.Now.Month.ToString());
-                    }
-                }
-                #endregion
-
-                #region dd
-                if (format.Contains("dd"))
-                {
-                    if (DateTime.Now.Day < 10)
-                    {
-                        result = result.Replace("dd", "0" + DateTime.Now.Day.ToString());
-                    }
-                    else
-                    {
-                        result = result.Replace("dd", DateTime.Now.Day.ToString());
-                    }
-                }
-                #endregion
-
-                #region HH
-                if (format.Contains("HH"))
-                {
-                    if (DateTime.Now.Hour < 10)
-                    {
-                        result = result.Replace("HH", "0" + DateTime.Now.Hour.ToString());
-                    }
-                    else
-                    {
-                        result = result.Replace("HH", DateTime.Now.Hour.ToString());
-                    }
-                }
-                #endregion
-
-                #region mm
-                if (format.Contains("mm"))
-                {
-                    if (DateTime.Now.Minute < 10)
-                    {
-                        result = result.Replace("mm", "0" + DateTime.Now.Minute.ToString());
-                    }
-                    else
-                    {
-                        result = result.Replace("mm", DateTime.Now.Minute.ToString());
-                    }
-                }
-                #endregion mm
-
-                #region ss
-                if (format.Contains("ss"))
-                {
-                    if (DateTime.Now.Second < 10)
-                    {
-                        result = result.Replace("ss", "0" + DateTime.Now.Second.ToString());
-                    }
-                    else
-                    {
-                        result = result.Replace("ss", DateTime.Now.Second.ToString());
-                    }
-                }
-                #endregion mm
-
-                #region fff
-                if (format.Contains("fff"))
-                {
-                    if (DateTime.Now.Millisecond < 10)
-                    {
-                        result = result.Replace("fff", "00" + DateTime.Now.Minute.ToString());
-                    }
-                    else if (DateTime.Now.Millisecond < 100)
-                    {
-                        result = result.Replace("fff", "0" + DateTime.Now.Minute.ToString());
-                    }
-                    else
-                    {
-                        result = result.Replace("fff", DateTime.Now.Minute.ToString());
-                    }
-                }
-                #endregion
-
-                //去掉#
-                result = result.Replace("#", "");
-
-                var sharpCount = format.ToCharArray().Count(p => p == '#');
-                var number = FixChar(GetMaxId(result), '0', sharpCount);
-
-                result += number;
-                return result;
             }
-            
+            #endregion
+
+            #region dd
+            if (format.Contains("dd"))
+            {
+                if (DateTime.Now.Day < 10)
+                {
+                    result = result.Replace("dd", "0" + DateTime.Now.Day.ToString());
+                }
+                else
+                {
+                    result = result.Replace("dd", DateTime.Now.Day.ToString());
+                }
+            }
+            #endregion
+
+            #region HH
+            if (format.Contains("HH"))
+            {
+                if (DateTime.Now.Hour < 10)
+                {
+                    result = result.Replace("HH", "0" + DateTime.Now.Hour.ToString());
+                }
+                else
+                {
+                    result = result.Replace("HH", DateTime.Now.Hour.ToString());
+                }
+            }
+            #endregion
+
+            #region mm
+            if (format.Contains("mm"))
+            {
+                if (DateTime.Now.Minute < 10)
+                {
+                    result = result.Replace("mm", "0" + DateTime.Now.Minute.ToString());
+                }
+                else
+                {
+                    result = result.Replace("mm", DateTime.Now.Minute.ToString());
+                }
+            }
+            #endregion mm
+
+            #region ss
+            if (format.Contains("ss"))
+            {
+                if (DateTime.Now.Second < 10)
+                {
+                    result = result.Replace("ss", "0" + DateTime.Now.Second.ToString());
+                }
+                else
+                {
+                    result = result.Replace("ss", DateTime.Now.Second.ToString());
+                }
+            }
+            #endregion mm
+
+            #region fff
+            if (format.Contains("fff"))
+            {
+                if (DateTime.Now.Millisecond < 10)
+                {
+                    result = result.Replace("fff", "00" + DateTime.Now.Minute.ToString());
+                }
+                else if (DateTime.Now.Millisecond < 100)
+                {
+                    result = result.Replace("fff", "0" + DateTime.Now.Minute.ToString());
+                }
+                else
+                {
+                    result = result.Replace("fff", DateTime.Now.Minute.ToString());
+                }
+            }
+            #endregion
+
+            //去掉#
+            result = result.Replace("#", "");
+
+            var sharpCount = format.ToCharArray().Count(p => p == '#');
+            var number = FixChar(GetMaxId(result), '0', sharpCount);
+
+            result += number;
+            return result;
+
 
         }
 
@@ -195,7 +196,7 @@ namespace EF.Core.Service
             }
             else
             {
-                var maxnumber = objList.First().Id.Replace(pre, "");
+                var maxnumber = TrimSart(objList.First().Id,pre);
                 return Convert.ToInt64(maxnumber) + 1;
             }
         }
@@ -210,6 +211,18 @@ namespace EF.Core.Service
                 result = c + result;
             }
             return result;
+        }
+
+        private string TrimSart(string str,string chars)
+        {
+            if(str.StartsWith(chars))
+            {
+                return str.Substring(chars.Length);
+            }
+            else
+            {
+                return str;
+            }
         }
     }
 }
